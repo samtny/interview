@@ -1,0 +1,163 @@
+// 'array literal', 'array object';
+var foo = [];
+var bar = new Array();
+
+// inheritance;
+
+var Animal = { eats: true };
+
+Animal.prototype.say = function (noise) {
+  console.log(noise);
+}
+
+// 'jumps' is Rabbit 'own' property;
+var Rabbit = { jumps: true };
+
+Rabbit.prototype = new Animal();
+Rabbit.prototype.constructor = Rabbit;
+
+Rabbit.prototype.say = function () {
+  Object.getPrototypeOf(this).say("Wuk")
+}
+
+var wally = new Rabbit();
+
+wally instanceof Animal === true;
+wally instanceof Rabbit === true;
+
+// also;
+
+wally.constructor.prototype === Rabbit.prototype;
+Object.getPrototypeOf(wally) === Rabbit.prototype;
+
+// wally 'eats' due to property 'shadowing';
+wally.eats === true;
+
+// "create" an object;
+	var o = { a: 1 };
+
+	// or;
+
+	// this is "constructor";
+	function Thing() {
+  	  this.a = 1;
+	}
+
+	// call the Thing() constructor;
+	var o = new Thing();
+
+	// or;
+
+	var p = Object.create(o);
+
+// just regurgitate the chain this way;
+
+	var o = { a: 1 };
+	var p = Object.create(o);
+
+	// Say: "The prototype chain is 'p' to 'o' to 'Object.prototype' to 'null'.
+
+// looking 'high up' the prototype chain *can* be slightly expensive
+// accessing a non-existant property will always traverse the full prototype chain
+// iterating properties of an object will iterate every property in the prototype chain
+// 'hasOwnProperty' is the only thing that doesn't traverse the prototype chain;
+	// p.hasOwnProperty('a') === false;
+// iterate the properites of an object;
+	for (var name in p) {
+		if (p.hasOwnProperty(name)) {
+			console.log('own property ' + name);
+		}
+		else {
+			console.log(name);
+		}
+	}
+// a fun trick, if suspect 'hasOwnProperty' was overridden;
+	({}).hasOwnProperty.call(o, 'a') === true;
+
+// this will change values for all instances;
+o.prototype.a = 2;
+
+// OPTIMIZATION (some google page);
+
+	// instead of string concatenation, do;
+	['join', 'me'].join();
+
+	// yes, this means 'push' to the array in a loop if need be, then '...join();'
+
+	// 'pass string array into helper function inside the loop', instead of taking function result and pushing to array
+
+	// use 'MyObject.prototype.foo = function () { ... }'
+	// ditto for 'value type' properties that do not depend on arguments...
+	
+	// avoid 'with', as it modifies scope chain
+
+	// use an 'event system' to avoid 'DOM element --> event handler --> closure --> DOM element' circular reference
+
+	// this may be called an 'expando' property, which is to be avoided;
+	$('.body')[0].myProperty = 'yo';
+		// if we must use then, then set to 'null' when no longer needed...
+
+// closures;
+	// "When a function is defined in another function and it
+    		has access to the outer function's context even after
+    		the outer function returns."
+
+	// are easily spotted; 
+		function foo() {
+			var bar = 10;
+
+			return function () {
+				console.log(bar);
+			}
+		}
+
+		foo();
+
+	// "A driver is sitting in a car. That car is inside a plane. Plane is in the airport. The ability of 			driver to access things outside his car, but inside the plane, even if that plane leaves an 			airport, is a closure."
+
+	// can be useful for e.g. avoiding globals;
+		
+	// 'are the most common source for memory leaks'
+
+	// are slow(er)
+		// they 'add a level to the scope chain', which must be checked...
+	
+// anonymous functions;
+	// common way to create a closure	
+
+// Function.prototype.apply(), Function.prototype.call();
+	// .call() takes an argument list, .apply() takes an array
+	// useful to 'chain constructors';
+
+// function.prototype.bind(thisArg[, arg1[, arg2[, ...]]])
+	// this one is weird...
+	// creates a *new* function
+	// has 'this' set to whatever you wants...
+	// new function is called with these arguments, following by any provided at call time...
+	// is fairly recent ...  ES5?
+	// use for 'partial functions'...  i guess...
+
+// function.prototype.extend()
+	nah...
+		
+// 'this';
+	
+
+// 'arguments';
+	// an 'array-like' object, consisting of function arguments...
+
+// 'arguments.callee';
+	// refers to currently executing function...
+	// is generally avoided...
+	// *may* be used to call an anonymous function recursively...
+
+// cross-browser;
+
+// monkey-patching;
+	// extending built-in prototypes (Object.prototype), etc...
+
+
+
+
+
+
