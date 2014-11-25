@@ -1,0 +1,11 @@
+// modernizer.js
+	// detects css3 and html5 capabilities
+	// 'creates a javascript object' and adds classes to html
+	// you then provide 'your own polyfills'
+	// v1.5 includes 'html5shiv' below
+	// 'doesn't include support for browsers without media queries' by default
+// html5shiv
+	// simply adds html5 tags to older browsers, and creates default styles
+// respond.js
+	// a javascript implementation of media queries (e.g. for ie8)...
+
