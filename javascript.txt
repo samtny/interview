@@ -17,8 +17,9 @@ bar.concat([foo]);
 	// the only non-objects are 'null' and 'undefined'
 	// this is an 'object initializer';
 		var obj = {};
-	// this is a (pointless) 'constructor function';
+	// this is a 'constructor function';
 		var obj = function () {};
+	// constructor function gives you access to the object prototype via '.prototype'
 	// this is Object.create();
 		var obj = Object.create(Object);
 	// you can't refer to object properties by 'index'...
@@ -32,26 +33,32 @@ bar.concat([foo]);
 
 // inheritance;
 
-var Animal = { eats: true };
-
-Animal.prototype.say = function (noise) {
-  console.log(noise);
+var Animal = function() {
+    this.eats = true;
+};
+Animal.prototype.say = function (word) {
+    alert(word);
 }
 
-// 'jumps' is Rabbit 'own' property;
-var Rabbit = { jumps: true };
+var Beaver = function() {
+    this.furry = true;
+};
+Beaver.prototype = new Animal();
+Beaver.prototype.constructor = Beaver;
 
-Rabbit.prototype = new Animal();
-Rabbit.prototype.constructor = Rabbit;
+var wally = new Beaver();
+wally.say('yo'); // yo
 
-Rabbit.prototype.say = function () {
-  Object.getPrototypeOf(this).say("Wuk")
+Animal.prototype.greet = function() {
+    this.say('yo2');
 }
+wally.greet(); // yo2
 
-var wally = new Rabbit();
+alert(wally.hasOwnProperty('furry')); // true
+alert(wally.hasOwnProperty('eats')); // false
 
-wally instanceof Animal === true;
-wally instanceof Rabbit === true;
+alert(wally instanceof Beaver); // true
+alert(wally instanceof Animal); // true
 
 // also;
 
