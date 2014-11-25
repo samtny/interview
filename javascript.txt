@@ -2,6 +2,34 @@
 var foo = [];
 var bar = new Array();
 
+bar.concat([foo]);
+
+// objects
+	// have 'properties' and 'type'
+	// dot notation, or thusly;
+		foo['bar-baz'] = 1;
+	// may iterate properties with 'for... in'
+		for (var i in foo) {
+			if (foo.hasOwnProperty(i)) {
+				console.log(i + ' = ' foo[i]);
+			}
+		}
+	// the only non-objects are 'null' and 'undefined'
+	// this is an 'object initializer';
+		var obj = {};
+	// this is a (pointless) 'constructor function';
+		var obj = function () {};
+	// this is Object.create();
+		var obj = Object.create(Object);
+	// you can't refer to object properties by 'index'...
+	// ... unless the object is 'reflected' out of DOM (e.g. 'document.body[0]')
+	// assignment to e.g Object.prototype[...] affects *all existing and future instances* of that type
+	// you *may* remove *non-inherited* properties thusly;
+		delete foo['bar-baz']
+
+// vis-a-vis the DOM;
+	// if you name elements, you can refer to them using dot notation;
+
 // inheritance;
 
 var Animal = { eats: true };
@@ -134,14 +162,22 @@ o.prototype.a = 2;
 	// creates a *new* function
 	// has 'this' set to whatever you wants...
 	// new function is called with these arguments, following by any provided at call time...
-	// is fairly recent ...  ES5?
+	// is fairly recent ...  ES5
 	// use for 'partial functions'...  i guess...
 
 // function.prototype.extend()
 	nah...
 		
 // 'this';
-	
+	// usually "determined by how a function is called"
+	// in global context, refers to global object
+	// when a 'bare' function is called, 'this' refers to global object (or 'undefined' in strict mode)
+	// when a function is called as a member of an object, 'this' refers to the object
+		// the 'most immediate' parent object is the only thing that matters
+	// never refers to an objects prototype, only the object, even if used in prototype
+	// same true for getter / setter style properties
+	// modify with '.call()' and '.apply()'
+	// when called as an event handler, equals DOM element
 
 // 'arguments';
 	// an 'array-like' object, consisting of function arguments...
@@ -151,12 +187,25 @@ o.prototype.a = 2;
 	// is generally avoided...
 	// *may* be used to call an anonymous function recursively...
 
+// "use strict";
+	// semicolon follows string
+
 // cross-browser;
+
+// getters, setters;
+	var o = {
+		a: 7,
+		get b() { return this.a + 1; },
+		set c(x) { this.a = x / 2; }
+		}
+	// that's it...
 
 // monkey-patching;
 	// extending built-in prototypes (Object.prototype), etc...
 
-
+// tricks;
+	g = 17;
+	delete g; // bye-bye 'g'...
 
 
 
