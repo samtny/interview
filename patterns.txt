@@ -1,0 +1,58 @@
+TODO:
+
+"a pattern must explain why a particular situation causes problems, and why the proposed solution is a good one".
+
+"CREATIONAL";
+
+singleton - ensure that only one instance of a class is created and provide a global access point to it
+
+*factory - create objects without exposing instantiation logic
+
+*factory method - define interface for creating new objects, but subclasses may decide which class is created
+
+*abstract factory - offers the interface only, without specifying classes
+
+builder - ?
+
+prototype - specify kinds of objects using a prototype, and create new objects ('kinds' of objects?) by copying the prototype
+
+object pool - reuse / recycle and share objects that are expensive to create
+
+lazy initialization - ?
+
+"BEHAVIORAL";
+
+chain of responsibility - request is sent up chain 'until one of the objects handles it'
+
+command - encapsulate a request in an object
+
+iterator - provide a way to access the elements of an aggregate without exposing underlying representation
+
+mediator - promotes loose coupling by keeping objects from referring to each other directly
+
+observer - define a dependency between an objects state and 'notifications' to dependents
+
+strategy - ?
+
+template - define the skeleton of an algoritm, deferring some steps
+
+visitor - ?
+
+STRUCTURAL
+
+adapter - convert the interface of a class to another, expected interface
+
+bridge - ?
+
+composite - ?
+
+decorator - add additional responsibilities dynamically to an object
+
+flyweight - share (partial) state between many objects, allowing other parts to vary
+
+memento - capture the internal state of an object, thereby allowing restore to initial state
+
+proxy - ?
+
+
+
