@@ -1,0 +1,69 @@
+zen of drupal ==
+	drupal is more 'PAC - Presentation-Abstraction-Control' and not MVC
+	data -> modules -> blocks / menus -> permissions -> template
+	CMS + CMF (framework)
+	
+modules;
+	block
+	menu
+	views
+	field / field ui
+	filter
+	image
+	path / pathauto (+ token)
+	redirect
+	rdf
+	search
+	token
+	*date
+	features
+	backup and migrate
+	metatag
+	nodequeue
+
+	wysiwyg
+	memcache
+	varnish	
+	ctools
+	media
+	context / context ui
+	taxonomy
+	webform
+	xml sitemap
+	
+	jquery update
+	apachesolr
+	sharethis
+	display suite
+	coder
+	ultimate cron
+	path_alias_xt
+	fast404
+	libraries
+	nice menus
+	strongarm
+	
+hooks;
+
+	top 10;
+		hook_init - does not run on cached pages
+		hook_boot - does
+		hook_form_alter
+		hook_theme
+		hook_permission
+		hook_menu
+		hook_block_info
+		hook_block_view
+
+	theme;
+		hook_preprocess_HOOK - preprocess *any* theme hook
+			hook_preprocess_page
+			hook_preprocess_html
+			hook_preprocess_myelement
+
+multisite
+contrib / custom / features
+
+drush
+
+
